@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
 <video id="player" controls autoplay></video>
@@ -11,7 +12,7 @@
   const canvas = document.getElementById('canvas');
   const context = canvas.getContext('2d');
   const captureButton = document.getElementById('capture');
-
+const url = "http://localhost:3000/upload"
   const constraints = {
     video: true,
   };
@@ -20,6 +21,22 @@
     
     context.drawImage(player, 0, 0, canvas.width, canvas.height);
     var image =canvas.toDataURL("image/png");
+
+
+      $.ajax({
+    type: "POST",
+    url: "http://localhost:3000/upload",
+    // The key needs to match your method's input parameter (case-sensitive).
+    data: JSON.stringify({ image: image }),
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: function(data){console.log(data);},
+    failure: function(errMsg) {
+        console.log(errMsg);
+    }
+});
+  
+
   });
 
   
