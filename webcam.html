@@ -19,6 +19,7 @@
   captureButton.addEventListener('click', () => {
     
     context.drawImage(player, 0, 0, canvas.width, canvas.height);
+    var image =canvas.toDataURL("image/png");
   });
 
   
