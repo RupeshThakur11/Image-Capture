@@ -10,7 +10,7 @@ module.exports = {
     /**
      * uploadsController.list()
      */
-    list:(req, res)=> {
+    list: (req, res) => {
         uploadModel.find((err, uploads) => {
             if (err) {
                 return res.status(500).json({
@@ -25,8 +25,11 @@ module.exports = {
     /**
      * uploadsController.show()
      */
-    show: (req, res)=> {
-        let id = req.params.id; uploadModel.findOne({_id: id}, (err, uploads) => {
+    show: (req, res) => {
+        let id = req.params.id;
+        uploadModel.findOne({
+            _id: id
+        }, (err, uploads) => {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting uploads.',
@@ -46,12 +49,12 @@ module.exports = {
      * uploadsController.create()
      */
     create: (req, res) => {
-        let uploads = new uploadModel({branch_code : req.body.branch_code,
-			image : req.body.image
-			
+        let uploads = new uploadModel({
+            image: req.body.image
+
         });
 
-        uploads.save((err, uploads)=> {
+        uploads.save((err, uploads) => {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating uploads',
@@ -66,7 +69,10 @@ module.exports = {
      * uploadsController.update()
      */
     update: (req, res) => {
-        let id = req.params.id; uploadModel.findOne({_id: id},  (err, uploads)=> {
+        let id = req.params.id;
+        uploadModel.findOne({
+            _id: id
+        }, (err, uploads) => {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting uploads',
@@ -80,8 +86,8 @@ module.exports = {
             }
 
             uploads.image = req.body.image ? req.body.image : uploads.image;
-			
-            uploads.save((err, uploads)=> {
+
+            uploads.save((err, uploads) => {
                 if (err) {
                     return res.status(500).json({
                         message: 'Error when updating uploads.',
@@ -97,8 +103,9 @@ module.exports = {
     /**
      * uploadsController.remove()
      */
-    remove: (req, res)=> {
-        let id = req.params.id; uploadModel.findByIdAndRemove(id, (err, uploads)=> {
+    remove: (req, res) => {
+        let id = req.params.id;
+        uploadModel.findByIdAndRemove(id, (err, uploads) => {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when deleting the uploads.',

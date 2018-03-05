@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
-var Schema   = mongoose.Schema;
+var Schema = mongoose.Schema;
 
 var uploadsSchema = new Schema({
-	'image' : String
+	'image': String
 });
 
 module.exports = mongoose.model('uploads', uploadsSchema);
